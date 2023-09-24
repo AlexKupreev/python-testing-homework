@@ -2,11 +2,7 @@ from http import HTTPStatus
 
 import pytest
 from django.test import Client
-from plugins.identity.user import (
-    ProfileAssertion,
-    ProfileDataFactory,
-    logged_user_client
-)
+from plugins.identity.user import ProfileAssertion, ProfileDataFactory
 
 
 @pytest.mark.django_db()
@@ -48,9 +44,9 @@ def test_admin_docs_authorized(admin_client: Client) -> None:
     assert b'docutils' not in response.content
 
 
-@pytest.mark.parametrize("url_found", [
+@pytest.mark.parametrize('url_found', [
     '/pictures/dashboard',
-    '/pictures/favourites'
+    '/pictures/favourites',
 ])
 def test_picture_pages_unauthorized(client: Client, url_found: str) -> None:
     """This test ensures that picture management pages require auth."""
@@ -59,16 +55,15 @@ def test_picture_pages_unauthorized(client: Client, url_found: str) -> None:
 
 
 @pytest.mark.django_db()
-@pytest.mark.parametrize("url_accessible", [
+@pytest.mark.parametrize('url_accessible', [
     '/pictures/dashboard',
-    '/pictures/favourites'
+    '/pictures/favourites',
 ])
 def test_picture_pages_authorized(
     logged_user_client: Client,
-    url_accessible: str
+    url_accessible: str,
 ) -> None:
     """Ensures picture management pages are accessible for authorized user."""
-
     response = logged_user_client.get(url_accessible)
     assert response.status_code == HTTPStatus.OK
 

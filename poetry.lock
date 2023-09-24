@@ -839,7 +839,7 @@ files = [
 django = "*"
 django-stubs-ext = ">=4.2.2"
 mypy = [
-    {version = ">=1.0.0"},
+    {version = ">=1.0.0", optional = true, markers = "extra != \"compatible-mypy\""},
     {version = "==1.5.*", optional = true, markers = "extra == \"compatible-mypy\""},
 ]
 types-pytz = "*"
@@ -2543,6 +2543,23 @@ files = [
 pytest = "*"
 
 [[package]]
+name = "pytest-retry"
+version = "1.4.1"
+description = "Adds the ability to retry flaky tests in CI environments"
+optional = false
+python-versions = ">=3.9"
+files = [
+    {file = "pytest-retry-1.4.1.tar.gz", hash = "sha256:839458529e193d82cea93e9ead66f1bf78847f35ffc8712765084974fdb7450c"},
+    {file = "pytest_retry-1.4.1-py3-none-any.whl", hash = "sha256:1a89b65df22c59a540366ef9a1e29340fe899ca938edce47e7493c8c41511f73"},
+]
+
+[package.dependencies]
+pytest = ">=7.0.0"
+
+[package.extras]
+dev = ["black", "flake8", "isort", "mypy"]
+
+[[package]]
 name = "pytest-timeout"
 version = "2.1.0"
 description = "pytest plugin to abort hanging tests"
@@ -3456,4 +3473,4 @@ dev = ["doc8", "flake8", "flake8-import-order", "rstcheck[sphinx]", "sphinx"]
 [metadata]
 lock-version = "2.0"
 python-versions = "3.11.5"
-content-hash = "66afe6f12dd7dd414caffdd4f8af8ed8aff836ad1bbc477a579de4a3f08d6e47"
+content-hash = "b5c726326e26f39f205a8b82033a6b57a758596e0d0eeed2bb2847ac3f178a1c"
